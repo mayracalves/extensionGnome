@@ -1,0 +1,8 @@
+{
+    "uuid": "mayra@mayra.com",
+    "name": "Exemplo1",
+    "description": "Minha primeira extensão",
+    "version": 1,
+    "shell-version": [ "3.36", "3.38" ],
+    "url": ""
+}
