@@ -29,6 +29,11 @@ function setButtonText () {
     var date = new Date();
     arr.push(date);
 
+    // date br GLib
+    var now = GLib.DateTime.new_now_local();
+    var str = now.format("%Y-%m-%d %H-%M-%S");
+    arr.push(str);
+
     panelButtonText.set_text( arr.join('    ') );
     return true;
 }
