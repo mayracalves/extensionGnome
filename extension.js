@@ -2,13 +2,14 @@
 const St = imports.gi.St;
 const Main = imports.ui.main;
 const Mainloop = imports.mainloop;
+const GLib = imports.gi.GLib;
 
 let panelButton, panelButtonText, timeout;
-let counter = 0;
 
 function setButtonText () {
-    counter++;
-    panelButtonText.set_text( counter.toString() )
+    var [ok, out, err, exit] = GLib.spawn_command_line_sync('date');
+    //precisa do replace, se não fica uma linha em branco em baixo da data
+    panelButtonText.set_text( out.toString().replace('\n', '') );
     return true;
 }
 
