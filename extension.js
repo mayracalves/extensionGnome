@@ -7,9 +7,18 @@ const GLib = imports.gi.GLib;
 let panelButton, panelButtonText, timeout;
 
 function setButtonText () {
+    var arr = [];
+    // date
     var [ok, out, err, exit] = GLib.spawn_command_line_sync('date');
-    //precisa do replace, se não fica uma linha em branco em baixo da data
-    panelButtonText.set_text( out.toString().replace('\n', '') );
+    arr.push( out.toString().replace('\n', '') );
+
+    // GEDIT
+    var [ok, out, err, exit] = GLib.spawn_command_line_sync('pgrep gedit');
+    if (out.length > 0) {
+        arr.push('GEDIT');  
+    }
+  
+    panelButtonText.set_text( arr.join('    ') );
     return true;
 }
 
