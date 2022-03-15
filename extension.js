@@ -18,6 +18,17 @@ function setButtonText () {
         arr.push('GEDIT');  
     }
   
+    // Private
+    var [ok, out, err, exit] = GLib.spawn_command_line_sync(
+        '/bin/bash -c "ifconfig -a | grep tun0"');
+    if (out.length > 0) {
+        arr.push('Private');
+    }
+
+    // date by js
+    var date = new Date();
+    arr.push(date);
+
     panelButtonText.set_text( arr.join('    ') );
     return true;
 }
